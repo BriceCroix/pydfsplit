@@ -1,0 +1,4 @@
+dist/
+*.pdf
+.vscode
+.idea

@@ -1,4 +1,3 @@
-# pyinstaller -F pychronogram.py
 from dataclasses import dataclass
 from PyPDF2 import PdfReader, PdfWriter
 from pathlib import Path
@@ -15,10 +14,10 @@ def get_arg_parser() -> ArgumentParser:
     parser.add_argument('file', action='store',
                         help='File to be splitted or merged with another.')
     parser.add_argument('-o', '--output', action='store',
-                        required=False, help='Output file name.', default='out.pdf')
+                        required=False, help='Output file name when merging files.', default='out.pdf')
 
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('-a', '--appendix', action='store',
+    group.add_argument('-a', '--append', action='store',
                        help='File to be appended after first file.')
     group.add_argument('-s', '--split', action='store',
                        help='Index of page where to split input file.', type=int)
@@ -60,7 +59,7 @@ def process(args: Args):
     else:
         if (args.split >= len(reader.pages) or args.split < 1):
             return
-        output_without_ext, output_ext = os.path.splitext(args.output)
+        output_without_ext, output_ext = os.path.splitext(args.file)
         writer = PdfWriter()
         for page in reader.pages[:args.split]:
             writer.add_page(page)

@@ -4,14 +4,14 @@
 
 ## Examples
 
-- Split a pdf file in two files at page 2 (starting at page 0):
+- Split a pdf file in two files (pages 0 and 1 in one file, pages 2, 3 and so on in another):
 ```shell
-pydfplit --split 2 --output "my_output.pdf" "my_file.pdf"
+pydfplit --split 2 "my_file.pdf"
 ```
 
 - Merge two pdf files
 ```shell
-pydfplit --appendix "second_file" --output "my_output.pdf" "first_file.pdf"
+pydfplit --append "second_file" --output "my_output.pdf" "first_file.pdf"
 ```
 
 ## About execution
